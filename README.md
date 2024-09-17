@@ -73,3 +73,56 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Composer:
 - MySQL: nose
 - PHP MySQL drive
+
+
+
+acciones para el CRUD de los modelos: 
+
+## Create: 
+- validacion: <br/>
+```php
+$validatedData = $request->validate([
+    'name' => 'required|string',
+    'email' => 'required|email|unique:users,email',
+    'password' => 'required|string|min:8'
+]);
+```
+- crear
+```php
+$user = User::create([
+    'name' => $validatedData['name'],
+    'email' => $validatedData['email'],
+    'password' => bcrypt($validatedData['password']),
+]);
+```
+
+## Read:
+- getAll: `Model::all()`
+- getById: `Model::find($id)`
+- getByParameter: `Model::where('parameter', $value)->first()`
+- getAllByParameter: `Model::where('parameter', $value)->get()`
+
+
+## Update: 
+- actualizar uno ya existente:
+```php
+$user = User::find($id);
+$user->update([
+    'name' => 'Nuevo Nombre',
+    'email' => 'nuevoemail@example.com'
+]);
+```
+- otra manera:
+```php
+$user = User::find($id);
+$user->name = 'Nuevo Nombre';
+$user->email = 'nuevoemail@example.com';
+$user->save();
+```
+
+## Delete
+- eliminar uno:
+```php
+$user = User::find($id);
+$user->delete();
+```
