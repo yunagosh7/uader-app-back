@@ -27,6 +27,14 @@ Route::group([
         return $obj;
     });
 
+    Route::post("/tesis1234", function(Request $request) {
+        
+        $body = Request::all();
+        // create a record in the db
+        
+        return $body;
+    });
+
 
     Route::post("/tesis", function(Request $request) {
         
@@ -38,6 +46,7 @@ Route::group([
 
 
     Route::delete("/tesis/{tesisId}", function(Request $request){
+        $body = $request->all();
         // $obj = array([
         //     "name" => "tesis 1",
         //     "id" => 1
